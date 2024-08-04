@@ -1,8 +1,5 @@
 main() {
-    if ! diskutil list | grep --quiet RPI-RP2; then
-      echo "Did not find RPI-RP2 in 'diskutil list'. Exiting."
-      exit 1
-    fi
+  source ./_verify_keyboard_ready_for_boot__source_me.sh
 
   qmk flash -c -kb lily58/rev1 -km nkondrat -e CONVERT_TO=blok
 }
