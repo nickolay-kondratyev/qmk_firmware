@@ -157,6 +157,13 @@ bool oled_task_user(void) {
 #endif // OLED_ENABLE
 
 
+void launch_app(const char* app_name) {
+    // Cmd+Space, type 'app_name', Enter
+    SEND_STRING(SS_LGUI(" "));
+    SEND_STRING(app_name);
+    SEND_STRING(SS_TAP(X_ENTER));
+}
+
 // Custom keycode processing
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
@@ -176,7 +183,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
          switch (keycode) {
             case TERMINAL:
-                SEND_STRING(SS_LGUI(" ") "iTerm" SS_TAP(X_ENTER)); // Cmd+Space, type 'iterm', Enter
+                launch_app("iTerm");
                 return false;
         }
     }
