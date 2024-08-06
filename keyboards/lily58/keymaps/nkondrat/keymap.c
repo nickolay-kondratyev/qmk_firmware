@@ -23,20 +23,6 @@ const char* custom_strings[] = {
     // Add more custom strings as needed
 };
 
-// Custom keycode processing
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        size_t num_custom_strings = sizeof(custom_strings) / sizeof(custom_strings[0]);
-        if (keycode >= CUSTOM_STRING_BASE && keycode < CUSTOM_STRING_BASE + num_custom_strings) {
-            const char* custom_string = custom_strings[keycode - CUSTOM_STRING_BASE];
-            if (custom_string) {
-                SEND_STRING(custom_string);
-                return false; // Skip further processing of this key
-            }
-        }
-    }
-    return true;
-}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -169,12 +155,23 @@ bool oled_task_user(void) {
 }
 #endif // OLED_ENABLE
 
+
+// Custom keycode processing
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-#ifdef OLED_ENABLE
-    set_keylog(keycode, record);
-#endif
-    // set_timelog();
-  }
-  return true;
+    if (record->event.pressed) {
+        #ifdef OLED_ENABLE
+            set_keylog(keycode, record);
+        #endif
+
+        size_t num_custom_strings = sizeof(custom_strings) / sizeof(custom_strings[0]);
+        if (keycode >= CUSTOM_STRING_BASE && keycode < CUSTOM_STRING_BASE + num_custom_strings) {
+            const char* custom_string = custom_strings[keycode - CUSTOM_STRING_BASE];
+
+            if (custom_string) {
+                SEND_STRING(custom_string);
+                return false; // Skip further processing of this key
+            }
+        }
+    }
+    return true;
 }
