@@ -7,6 +7,37 @@ enum layer_number {
   _ADJUST,
 };
 
+// Define custom keycodes starting from SAFE_RANGE
+// In QMK firmware, SAFE_RANGE is used to ensure that custom keycodes
+// do not conflict with predefined keycodes.
+enum custom_keycodes {
+    CUSTOM_STRING_BASE = SAFE_RANGE, // Base value for custom keycodes
+    CUSTOM_STRING_1,
+    CUSTOM_STRING_2,
+};
+
+// Define an array of custom strings corresponding to custom keycodes
+const char* custom_strings[] = {
+    [CUSTOM_STRING_1 - CUSTOM_STRING_BASE] = "2>&1 | ",
+    [CUSTOM_STRING_2 - CUSTOM_STRING_BASE] = "Another custom string",
+    // Add more custom strings as needed
+};
+
+// Custom keycode processing
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        size_t num_custom_strings = sizeof(custom_strings) / sizeof(custom_strings[0]);
+        if (keycode >= CUSTOM_STRING_BASE && keycode < CUSTOM_STRING_BASE + num_custom_strings) {
+            const char* custom_string = custom_strings[keycode - CUSTOM_STRING_BASE];
+            if (custom_string) {
+                SEND_STRING(custom_string);
+                return false; // Skip further processing of this key
+            }
+        }
+    }
+    return true;
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
@@ -46,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
-  KC_DEL,  KC_F1,   KC_F2,    KC_F3,    KC_F4,    KC_F5,                     KC_TRNS, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
+  KC_DEL,  KC_F1,   KC_F2,    KC_F3,    KC_F4,    KC_F5,                     CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS,  KC_UP,    KC_TRNS,  KC_TRNS,                   KC_PIPE, KC_QUOT, KC_TRNS, KC_TRNS, KC_LCTL, KC_EQL,
   KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS, KC_DQT,  KC_QUOT, KC_TRNS,
   KC_LSFT, KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
