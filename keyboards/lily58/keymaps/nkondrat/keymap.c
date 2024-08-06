@@ -168,7 +168,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             const char* custom_string = custom_strings[keycode - CUSTOM_STRING_BASE];
 
             if (custom_string) {
-                SEND_STRING(custom_string);
+                send_string(custom_string);
                 return false; // Skip further processing of this key
             }
         }
