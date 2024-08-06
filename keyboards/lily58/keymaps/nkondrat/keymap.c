@@ -18,7 +18,8 @@ enum custom_keycodes {
     NOTES,
     CHROME,
     INTELLIJ,
-    SLACK
+    SLACK,
+    GPT
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -60,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |  Up  |      |      |                    |  |   |  '   |INTELLIJ|      |LCTRL |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |SLACK |      |      |      |-------.    ,-------|      |      |      | "    | '    |      |
+ * |      |      |SLACK |      |      | GPT  |-------.    ,-------|      |      |      | "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |LSHIFT|      |      |CHROME|      |      |-------|    |-------|NOTES |      |      |      |      |LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -71,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,    KC_F3,    KC_F4,    KC_F5,                     CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS,  KC_UP,    KC_TRNS,  TERMINAL,                   KC_PIPE, KC_QUOT, INTELLIJ, KC_TRNS, KC_LCTL, KC_EQL,
-  KC_TRNS, KC_TRNS, SLACK,    KC_TRNS,  KC_TRNS,  KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS, KC_DQT,  KC_DQT, KC_TRNS,
+  KC_TRNS, KC_TRNS, SLACK,    KC_TRNS,  KC_TRNS,  GPT,                        KC_TRNS, KC_TRNS, KC_TRNS, KC_DQT,  KC_DQT, KC_TRNS,
   KC_LSFT, KC_TRNS, KC_TRNS,  CHROME,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, NOTES, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
                               KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
@@ -202,6 +203,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case SLACK:
                 launch_app("Slack");
+                return false;
+            case GPT:
+                launch_app("ChatGPT");
                 return false;
         }
     }
