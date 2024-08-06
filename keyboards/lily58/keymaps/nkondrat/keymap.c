@@ -15,6 +15,9 @@ enum custom_keycodes {
     CUSTOM_STRING_1,
     CUSTOM_STRING_2,
     TERMINAL,
+    NOTES,
+    CHROME,
+    INTELLIJ
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -49,15 +52,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_LBRC,  KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_LSFT,
                         KC_LGUI, KC_LALT, MO(_RAISE), KC_SPC, KC_ENT, MO(_LOWER), KC_LALT, KC_LGUI
 ),
-/* LOWER
+
+/* LOWER Activated by RIGHT HAND side activation
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |  Up  |      |      |                    |  |   |  '   |      |      |LCTRL |  =   |
+ * |      |      |      |  Up  |      |      |                    |  |   |  '   |INTELLIJ|      |LCTRL |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------.    ,-------|      |      |      | "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LSHIFT|      |      |      |      |      |-------|    |-------|      |      |      |      |      |LSHIFT|
+ * |LSHIFT|      |      |CHROME|      |      |-------|    |-------|NOTES |      |      |      |      |LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LGUI | LAlt |       | /       /       \     \  |      |      |      |
  *                   |      |      |       |/       /         \     \ |      |      |      |
@@ -65,9 +69,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,    KC_F3,    KC_F4,    KC_F5,                     CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS, KC_TRNS, KC_TRNS,  KC_UP,    KC_TRNS,  TERMINAL,                   KC_PIPE, KC_QUOT, KC_TRNS, KC_TRNS, KC_LCTL, KC_EQL,
+  KC_TRNS, KC_TRNS, KC_TRNS,  KC_UP,    KC_TRNS,  TERMINAL,                   KC_PIPE, KC_QUOT, INTELLIJ, KC_TRNS, KC_LCTL, KC_EQL,
   KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS, KC_DQT,  KC_QUOT, KC_TRNS,
-  KC_LSFT, KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
+  KC_LSFT, KC_TRNS, KC_TRNS,  CHROME,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, NOTES, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
                               KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
 /* RAISE
@@ -184,6 +188,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          switch (keycode) {
             case TERMINAL:
                 launch_app("iTerm");
+                return false;
+            case NOTES:
+                launch_app("Visual Studio Code");
+                return false;
+            case CHROME:
+                launch_app("Google Chrome");
+                return false;
+            case INTELLIJ:
+                launch_app("IntelliJ IDEA");
                 return false;
         }
     }
