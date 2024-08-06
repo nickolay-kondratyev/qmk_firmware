@@ -14,6 +14,7 @@ enum custom_keycodes {
     CUSTOM_STRING_BASE = SAFE_RANGE, // Base value for custom keycodes
     CUSTOM_STRING_1,
     CUSTOM_STRING_2,
+    TERMINAL,
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -73,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  ~   |  `   |  ~   |      |      |      |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                    | F12  |  '   |  _   |  -   |  Up  | PgUp |
+ * |      |      |      |      |      | TERMINAL|                  | F12  |  '   |  _   |  -   |  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------.    ,-------|  |   | Left |Right | Down |  Up  |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -86,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_RAISE] = LAYOUT(
   KC_TILD, KC_GRV,  KC_TILD,  KC_TRNS, KC_TRNS, KC_TRNS,                   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
+  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, TERMINAL,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
   KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,                   KC_PIPE, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,   KC_PGDN,
   KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DOWN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                             KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
@@ -171,6 +172,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string(custom_string);
                 return false; // Skip further processing of this key
             }
+        }
+
+         switch (keycode) {
+            case TERMINAL:
+                SEND_STRING(SS_LGUI(" ") "iterm" SS_TAP(X_ENTER)); // Cmd+Space, type 'iterm', Enter
+                return false;
         }
     }
     return true;
