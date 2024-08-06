@@ -176,7 +176,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
          switch (keycode) {
             case TERMINAL:
-                SEND_STRING(SS_LGUI(" ") "iterm" SS_TAP(X_ENTER)); // Cmd+Space, type 'iterm', Enter
+                SEND_STRING(SS_LGUI(" ") "iTerm" SS_TAP(X_ENTER)); // Cmd+Space, type 'iterm', Enter
                 return false;
         }
     }
