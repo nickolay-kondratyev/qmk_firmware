@@ -1,3 +1,4 @@
+# Note I have tried to decouple to just be able to flash but its not so straight forward.
 main() {
   source ./_verify_keyboard_ready_for_boot__source_me.sh
 
