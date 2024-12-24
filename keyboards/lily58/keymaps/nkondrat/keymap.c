@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         KC_LGUI, KC_LALT, MO(_RAISE), KC_SPC, KC_ENT, MO(_LOWER), KC_LALT, KC_LGUI
 ),
 
-/* LOWER Activated by RIGHT HAND side activation
+/* LOWER/Right hand Activated by RIGHT HAND side activation
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -87,7 +87,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LSFT, KC_TRNS, KC_TRNS,  CHROME,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, NOTES, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
                               KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
-/* RAISE
+
+/* RAISE/LEFT hand Activated by LEFT HAND side activation
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  ~   |  `   |  ~   |      |      |      |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -262,7 +263,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C4M_L:
                 send_4_mod_combo(KC_L);
                 return false;
-               
+
         }
     }
     return true;
