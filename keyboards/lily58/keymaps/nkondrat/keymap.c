@@ -167,7 +167,7 @@ void launch_app(const char* app_name) {
     // Cmd+Space, type 'app_name', Enter
     SEND_STRING(SS_LGUI(" "));
     wait_ms(200);
-    SEND_STRING(app_name);
+    send_string(app_name);
     SEND_STRING(SS_TAP(X_ENTER));
 }
 
