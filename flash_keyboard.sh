@@ -1,5 +1,5 @@
 main() {
-  source ./_verify_keyboard_ready_for_boot__source_me.sh
+  source ./verify_keyboard_ready_for_boot__source_me.sh
 
   # Define the path to the compiled firmware file
   local firmware_file="$PWD/.build/lily58_rev1_nkondrat_blok.uf2"
