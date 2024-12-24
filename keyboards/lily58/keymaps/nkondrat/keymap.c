@@ -19,7 +19,18 @@ enum custom_keycodes {
     CHROME,
     INTELLIJ,
     SLACK,
-    GPT
+    GPT,
+
+    // Combo 4 modifiers
+    C4M_A,
+    C4M_S,
+    C4M_F,
+    C4M_D,
+    C4M_G,
+    C4M_H,
+    C4M_J,
+    C4M_K,
+    C4M_L
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -104,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
+ * |      |C4M_A|      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -113,9 +124,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
   [_ADJUST] = LAYOUT(
-  QK_BOOT, KC_Z, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, C4M_A, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                              _______, _______, _______, _______, _______,  _______, _______, _______
   )
@@ -171,6 +182,23 @@ void launch_app(const char* app_name) {
     SEND_STRING(SS_TAP(X_ENTER));
 }
 
+void send_4_mod_combo(uint16_t main_key) {
+    // Register the 4 modifier keys
+    register_code(KC_LSFT);  // Shift
+    register_code(KC_LCTL);  // Ctrl
+    register_code(KC_LGUI);  // Cmd
+    register_code(KC_LALT);  // Option
+
+    // Send the main key
+    tap_code(main_key);
+
+    // Unregister the modifier keys
+    unregister_code(KC_LALT);
+    unregister_code(KC_LGUI);
+    unregister_code(KC_LCTL);
+    unregister_code(KC_LSFT);
+}
+
 // Custom keycode processing
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
@@ -206,6 +234,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case GPT:
                 launch_app("ChatGPT");
+                return false;
+            case C4M_A:
+                send_4_mod_combo(KC_A);
                 return false;
         }
     }
