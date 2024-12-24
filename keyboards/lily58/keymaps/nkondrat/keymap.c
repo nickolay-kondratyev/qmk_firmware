@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C4M_A|      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
+ * |      |C4M_A |C4M_S |C4M_D |C4M_F |C4M_G |-------.    ,-------| C4M_H|C4M_J |C4M_K |C4M_L |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ADJUST] = LAYOUT(
   QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, C4M_A, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, C4M_A, C4M_S, C4M_D, C4M_F, C4M_G,                             C4M_H, C4M_J, C4M_K, C4M_L, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                              _______, _______, _______, _______, _______,  _______, _______, _______
   )
@@ -238,6 +238,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C4M_A:
                 send_4_mod_combo(KC_A);
                 return false;
+            case C4M_S:
+                send_4_mod_combo(KC_S);
+                return false;
+            case C4M_F:
+                send_4_mod_combo(KC_F);
+                return false;
+            case C4M_D:
+                send_4_mod_combo(KC_D);
+                return false;
+            case C4M_G:
+                send_4_mod_combo(KC_G);
+                return false;
+            case C4M_H:
+                send_4_mod_combo(KC_H);
+                return false;
+            case C4M_J:
+                send_4_mod_combo(KC_J);
+                return false;
+            case C4M_K:
+                send_4_mod_combo(KC_K);
+                return false;
+            case C4M_L:
+                send_4_mod_combo(KC_L);
+                return false;
+               
         }
     }
     return true;
