@@ -30,7 +30,14 @@ enum custom_keycodes {
     C4M_H,
     C4M_J,
     C4M_K,
-    C4M_L
+    C4M_L,
+
+    // Combo 4 modifiers
+    C3MO_A,
+    C3MO_S,
+    C3MO_D,
+    C3MO_F,
+    C3MO_G,
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -94,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      | TERMINAL|                  | F12  |  '   |  _   |  -   |  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|  |   | Left |Right | Down |  Up  |PgDwn |
+ * |      |C3MO_A|C3MO_S|C3MO_D|C3MO_F|C3MO_G|-------.    ,-------|  |   | Left |Right | Down |  Up  |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------| Down |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -104,11 +111,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_RAISE] = LAYOUT(
-  KC_TILD, KC_GRV,  KC_TILD,  KC_TRNS, KC_TRNS, KC_TRNS,                   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, TERMINAL,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
-  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,                   KC_PIPE, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,   KC_PGDN,
-  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DOWN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                            KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  KC_TILD, KC_GRV,  KC_TILD, KC_TRNS, KC_TRNS, KC_TRNS,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TERMINAL,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
+  KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   KC_PIPE, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,   KC_PGDN,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DOWN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                             KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -200,6 +207,21 @@ void send_4_mod_combo(uint16_t main_key) {
     unregister_code(KC_LSFT);
 }
 
+void send_3_mod_option_combo(uint16_t main_key) {
+    // Register the 3 modifier keys (Shift, Ctrl, Option)
+    register_code(KC_LSFT);  // Shift
+    register_code(KC_LCTL);  // Ctrl
+    register_code(KC_LALT);  // Option
+
+    // Send the main key
+    tap_code(main_key);
+
+    // Unregister the modifier keys
+    unregister_code(KC_LALT);
+    unregister_code(KC_LCTL);
+    unregister_code(KC_LSFT);
+}
+
 // Custom keycode processing
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
@@ -263,7 +285,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C4M_L:
                 send_4_mod_combo(KC_L);
                 return false;
-
+            case C3MO_A:
+                send_3_mod_option_combo(KC_A);
+                return false;
+            case C3MO_S:
+                send_3_mod_option_combo(KC_S);
+                return false;
+            case C3MO_D:
+                send_3_mod_option_combo(KC_D);
+                return false;
+            case C3MO_F:
+                send_3_mod_option_combo(KC_F);
+                return false;
+            case C3MO_G:
+                send_3_mod_option_combo(KC_G);
+                return false;
         }
     }
     return true;
