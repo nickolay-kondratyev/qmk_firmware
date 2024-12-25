@@ -31,6 +31,12 @@ enum custom_keycodes {
     C4M_J,
     C4M_K,
     C4M_L,
+    C4M_Y,
+    C4M_U,
+    C4M_I,
+    C4M_O,
+    C4M_P,
+
 
     // Combo 3 modifiers with option
     C3MO_A,
@@ -132,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  QK_BOOT   |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |                    |C4M_Y |C4M_U |C4M_I |C4M_O |C4M_P |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C4M_A |C4M_S |C4M_D |C4M_F |C4M_G |-------.    ,-------| C4M_H|C4M_J |C4M_K |C4M_L |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -144,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_ADJUST] = LAYOUT(
   QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   C4M_Y, C4M_U, C4M_I, C4M_O, C4M_P, XXXXXXX,
   XXXXXXX, C4M_A, C4M_S, C4M_D, C4M_F, C4M_G,                             C4M_H, C4M_J, C4M_K, C4M_L, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                              _______, _______, _______, _______, _______,  _______, _______, _______
@@ -311,6 +317,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C4M_L:
                 send_4_mod_combo(KC_L);
                 return false;
+            case C4M_Y:
+                send_4_mod_combo(KC_Y);
+                return false;
+            case C4M_U:
+                send_4_mod_combo(KC_U);
+                return false;
+            case C4M_I:
+                send_4_mod_combo(KC_I);
+                return false;
+            case C4M_O:
+                send_4_mod_combo(KC_O);
+                return false;
+            case C4M_P:
+                send_4_mod_combo(KC_P);
+                return false;
+            // --------------------------------------------------------------------------------
             case C3MO_A:
                 send_3_mod_option_combo(KC_A);
                 return false;
