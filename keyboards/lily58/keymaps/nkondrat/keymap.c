@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H
+aa#include QMK_KEYBOARD_H
 
 enum layer_number {
   _QWERTY = 0,
@@ -32,12 +32,19 @@ enum custom_keycodes {
     C4M_K,
     C4M_L,
 
-    // Combo 4 modifiers
+    // Combo 3 modifiers with option
     C3MO_A,
     C3MO_S,
     C3MO_D,
     C3MO_F,
     C3MO_G,
+
+    // Combo 3 modifiers with command
+    C3MC_A,
+    C3MC_S,
+    C3MC_D,
+    C3MC_F,
+    C3MC_G,
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -79,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |  Up  |      |      |                    |  |   |  '   |INTELLIJ|      |LCTRL |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |SLACK |      |      | GPT  |-------.    ,-------|      |      |      | "    | '    |      |
+ * |      |C3MC_A|SLACK |C3MC_D|C3MC_F| GPT  |-------.    ,-------|      |      |      | "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |LSHIFT|      |      |CHROME|      |      |-------|    |-------|NOTES |      |      |      |      |LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -88,11 +95,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
-  KC_DEL,  KC_F1,   KC_F2,    KC_F3,    KC_F4,    KC_F5,                     CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS, KC_TRNS, KC_TRNS,  KC_UP,    KC_TRNS,  TERMINAL,                   KC_PIPE, KC_QUOT, INTELLIJ, KC_TRNS, KC_LCTL, KC_EQL,
-  KC_TRNS, KC_TRNS, SLACK,    KC_TRNS,  KC_TRNS,  GPT,                        KC_TRNS, KC_TRNS, KC_TRNS, KC_DQT,  KC_DQT, KC_TRNS,
-  KC_LSFT, KC_TRNS, KC_TRNS,  CHROME,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, NOTES, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
-                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
+  KC_DEL,  KC_F1,   KC_F2,   KC_F3,    KC_F4,     KC_F5,                     CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_UP,  KC_TRNS,  TERMINAL,                   KC_PIPE, KC_QUOT, INTELLIJ, KC_TRNS, KC_LCTL, KC_EQL,
+  KC_TRNS,  C3MC_A, SLACK,   C3MC_D,  C3MC_F,  GPT,                        KC_TRNS, KC_TRNS, KC_TRNS, KC_DQT,  KC_DQT, KC_TRNS,
+  KC_LSFT, KC_TRNS, KC_TRNS, CHROME,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, NOTES, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
+                             KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
 /* RAISE/LEFT hand Activated by LEFT HAND side activation
@@ -222,6 +229,21 @@ void send_3_mod_option_combo(uint16_t main_key) {
     unregister_code(KC_LSFT);
 }
 
+void send_3_mod_cmd_combo(uint16_t main_key) {
+    // Register the 3 modifier keys (Shift, Ctrl, Command)
+    register_code(KC_LSFT);  // Shift
+    register_code(KC_LCTL);  // Ctrl
+    register_code(KC_LGUI);  // Command (on macOS, LGUI is the Command key)
+
+    // Send the main key
+    tap_code(main_key);
+
+    // Unregister the modifier keys
+    unregister_code(KC_LGUI);
+    unregister_code(KC_LCTL);
+    unregister_code(KC_LSFT);
+}
+
 // Custom keycode processing
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
@@ -299,6 +321,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case C3MO_G:
                 send_3_mod_option_combo(KC_G);
+                return false;
+            case C3MC_A:
+                send_3_mod_cmd_combo(KC_A);
+                return false;
+            case C3MC_S:
+                send_3_mod_cmd_combo(KC_S);
+                return false;
+            case C3MC_D:
+                send_3_mod_cmd_combo(KC_D);
+                return false;
+            case C3MC_F:
+                send_3_mod_cmd_combo(KC_F);
+                return false;
+            case C3MC_G:
+                send_3_mod_cmd_combo(KC_G);
                 return false;
         }
     }
