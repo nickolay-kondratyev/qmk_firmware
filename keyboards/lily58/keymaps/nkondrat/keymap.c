@@ -26,6 +26,8 @@ enum custom_keycodes {
     O_SLCK,
     // Open ChatGPT
     O_GPT,
+    // Open MindNode
+    O_MNDN,
 
 
     // Combo 4 modifiers
@@ -103,19 +105,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |  Up  |      |O_ITRM|                    |  |   |  '   |O_INTLJ|      |LCTRL |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_A|O_SLCK |C3MC_D|C3MC_F| O_GPT  |-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
+ * |      |C3MC_A|O_SLCK|C3MC_D|C3MC_F| O_GPT|-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LSHIFT|      |      |O_CHRM|      |      |-------|    |-------|O_VSC |      |      |      |      |LSHIFT|
+ * |LSHIFT|      |      |O_CHRM|      |      |-------|    |-------|O_VSC |O_MNDN|      |      |      |LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LGUI | LAlt |       | /       /       \     \  |      |      |      |
  *                   |      |      |       |/       /         \     \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
-  KC_DEL,  KC_F1,   KC_F2,   KC_F3,    KC_F4,     KC_F5,                     CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_UP,  KC_TRNS,  O_ITRM,                   KC_PIPE,  KC_QUOT, O_INTLJ, KC_TRNS, KC_LCTL, KC_EQL,
-  KC_TRNS,  C3MC_A, O_SLCK,   C3MC_D,  C3MC_F,  O_GPT,                         C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
-  KC_LSFT, KC_TRNS, KC_TRNS, O_CHRM,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, O_VSC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
+  KC_DEL,  KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_UP,  KC_TRNS,  O_ITRM,                KC_PIPE,  KC_QUOT, O_INTLJ, KC_TRNS, KC_LCTL, KC_EQL,
+  KC_TRNS,  C3MC_A, O_SLCK,   C3MC_D,  C3MC_F,  O_GPT,                C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
+  KC_LSFT, KC_TRNS, KC_TRNS, O_CHRM,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, O_VSC, O_MNDN, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
@@ -296,6 +298,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case O_GPT:
                 launch_app("ChatGPT");
+                return false;
+            case O_MNDN:
+                launch_app("MindNode");
                 return false;
             case C4M_A:
                 send_4_mod_combo(KC_A);
