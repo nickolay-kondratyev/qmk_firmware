@@ -14,12 +14,19 @@ enum custom_keycodes {
     CUSTOM_STRING_BASE = SAFE_RANGE, // Base value for custom keycodes
     CUSTOM_STRING_1,
     CUSTOM_STRING_2,
-    TERMINAL,
-    NOTES,
-    CHROME,
-    INTELLIJ,
-    SLACK,
-    GPT,
+    // Open iTerm
+    O_ITRM,
+    // Open Visual Studio Code
+    O_VSC,
+    // Open Google Chrome
+    O_CHRM,
+    // Open IntelliJ IDEA
+    O_INTLJ,
+    // Open Slack
+    O_SLCK,
+    // Open ChatGPT
+    O_GPT,
+
 
     // Combo 4 modifiers
     C4M_A,
@@ -94,11 +101,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |  Up  |      |      |                    |  |   |  '   |INTELLIJ|      |LCTRL |  =   |
+ * |      |      |      |  Up  |      |O_ITRM|                    |  |   |  '   |O_INTLJ|      |LCTRL |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_A|SLACK |C3MC_D|C3MC_F| GPT  |-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
+ * |      |C3MC_A|O_SLCK |C3MC_D|C3MC_F| O_GPT  |-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LSHIFT|      |      |CHROME|      |      |-------|    |-------|NOTES |      |      |      |      |LSHIFT|
+ * |LSHIFT|      |      |O_CHRM|      |      |-------|    |-------|O_VSC |      |      |      |      |LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LGUI | LAlt |       | /       /       \     \  |      |      |      |
  *                   |      |      |       |/       /         \     \ |      |      |      |
@@ -106,9 +113,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,   KC_F3,    KC_F4,     KC_F5,                     CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_UP,  KC_TRNS,  TERMINAL,                   KC_PIPE,  KC_QUOT, INTELLIJ, KC_TRNS, KC_LCTL, KC_EQL,
-  KC_TRNS,  C3MC_A, SLACK,   C3MC_D,  C3MC_F,  GPT,                         C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
-  KC_LSFT, KC_TRNS, KC_TRNS, CHROME,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, NOTES, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_UP,  KC_TRNS,  O_ITRM,                   KC_PIPE,  KC_QUOT, O_INTLJ, KC_TRNS, KC_LCTL, KC_EQL,
+  KC_TRNS,  C3MC_A, O_SLCK,   C3MC_D,  C3MC_F,  O_GPT,                         C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
+  KC_LSFT, KC_TRNS, KC_TRNS, O_CHRM,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, O_VSC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
@@ -116,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  ~   |  `   |  ~   |      |      |      |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      | TERMINAL|                  | F12  |  '   |  _   |  -   |  Up  | PgUp |
+ * |      |      |      |      |      |      |                    | F12  |  '   |  _   |  -   |  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MO_A|C3MO_S|C3MO_D|C3MO_F|C3MO_G|-------.    ,-------|  |   | Left |Right | Down |  Up  |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -129,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_RAISE] = LAYOUT(
   KC_TILD, KC_GRV,  KC_TILD, KC_TRNS, KC_TRNS, KC_TRNS,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TERMINAL,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   KC_PIPE, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,   KC_PGDN,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DOWN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                              KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
@@ -272,22 +279,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
 
          switch (keycode) {
-            case TERMINAL:
+            case O_ITRM:
                 launch_app("iTerm");
                 return false;
-            case NOTES:
+            case O_VSC:
                 launch_app("Visual Studio Code");
                 return false;
-            case CHROME:
+            case O_CHRM:
                 launch_app("Google Chrome");
                 return false;
-            case INTELLIJ:
+            case O_INTLJ:
                 launch_app("IntelliJ IDEA");
                 return false;
-            case SLACK:
+            case O_SLCK:
                 launch_app("Slack");
                 return false;
-            case GPT:
+            case O_GPT:
                 launch_app("ChatGPT");
                 return false;
             case C4M_A:
