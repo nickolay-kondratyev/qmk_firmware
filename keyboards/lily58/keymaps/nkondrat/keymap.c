@@ -64,6 +64,9 @@ enum custom_keycodes {
     C3MC_J,
     C3MC_K,
     C3MC_L,
+
+    // ```
+    CODE_BLOCK,
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -145,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  QK_BOOT   |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |  QK_BOOT   | ```   |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |                    |C4M_Y |C4M_U |C4M_I |C4M_O |C4M_P |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -158,7 +161,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
   [_ADJUST] = LAYOUT(
-  QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  QK_BOOT, CODE_BLOCK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   C4M_Y, C4M_U, C4M_I, C4M_O, C4M_P, XXXXXXX,
   XXXXXXX, C4M_A, C4M_S, C4M_D, C4M_F, C4M_G,                             C4M_H, C4M_J, C4M_K, C4M_L, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -302,6 +305,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case O_MNDN:
                 launch_app("MindNode");
                 return false;
+           case CODE_BLOCK:
+               send_string("```");
+               return false;
             case C4M_A:
                 send_4_mod_combo(KC_A);
                 return false;
