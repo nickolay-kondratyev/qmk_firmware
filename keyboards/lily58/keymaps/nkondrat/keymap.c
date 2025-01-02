@@ -53,7 +53,7 @@ enum custom_keycodes {
     C3MO_D,
     C3MO_F,
     C3MO_G,
-    C3MO_C
+    C3MO_C,
 
     // Combo 3 modifiers with command
     C3MC_A,
