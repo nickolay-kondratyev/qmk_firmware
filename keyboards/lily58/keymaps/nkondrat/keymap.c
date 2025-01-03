@@ -36,6 +36,13 @@ enum custom_keycodes {
     C4M_F,
     C4M_D,
     C4M_G,
+
+    C4M_Z,
+    C4M_X,
+    C4M_C,
+    C4M_V,
+    C4M_B,
+
     C4M_H,
     C4M_J,
     C4M_K,
@@ -156,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C4M_A |C4M_S |C4M_D |C4M_F |C4M_G |-------.    ,-------| C4M_H|C4M_J |C4M_K |C4M_L |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
+ * |      |C4M_Z |C4M_X |C4M_C |C4M_V |C4M_B |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -166,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   QK_BOOT, CODE_BLOCK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   C4M_Y, C4M_U, C4M_I, C4M_O, C4M_P, XXXXXXX,
   XXXXXXX, C4M_A, C4M_S, C4M_D, C4M_F, C4M_G,                             C4M_H, C4M_J, C4M_K, C4M_L, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, C4M_Z, C4M_X, C4M_C, C4M_V, C4M_B, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                              _______, _______, _______, _______, _______,  _______, _______, _______
   )
 };
@@ -324,6 +331,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case C4M_G:
                 send_4_mod_combo(KC_G);
+                return false;
+            case C4M_Z:
+                send_4_mod_combo(KC_Z);
+                return false;
+            case C4M_X:
+                send_4_mod_combo(KC_X);
+                return false;
+            case C4M_C:
+                send_4_mod_combo(KC_C);
+                return false;
+            case C4M_V:
+                send_4_mod_combo(KC_V);
+                return false;
+            case C4M_B:
+                send_4_mod_combo(KC_B);
                 return false;
             case C4M_H:
                 send_4_mod_combo(KC_H);
