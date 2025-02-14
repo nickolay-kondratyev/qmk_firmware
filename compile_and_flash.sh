@@ -1,6 +1,6 @@
 main() {
-    eai ./my_compile.sh
-    eai ./my_flash.sh
+    eai ./compile.sh
+    eai ./flash_keyboard.sh
 }
 
 main "${@}" || exit 1
