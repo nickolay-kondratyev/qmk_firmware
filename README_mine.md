@@ -21,5 +21,7 @@ Note: [QMK](thorg://notes/9e5ihl98dfsrkg80r0b1mqd)
 - [QMK & Blok reddit](https://www.reddit.com/r/ErgoMechKeyboards/comments/1csopi7/compiling_qmk_to_blok_anyone_succeeded/)
 - [resource](https://www.vikasraj.dev/blog/qmk-pi-pico-rp2040)
 
+
 ### Original REPO
 - https://github.com/qmk/qmk_firmware
+
