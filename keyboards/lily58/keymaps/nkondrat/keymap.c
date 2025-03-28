@@ -67,6 +67,15 @@ enum custom_keycodes {
     C3MO_G,
     C3MO_C,
 
+    // C3MO_<
+    // Key "," KC_COMM
+    C3MO_LT,
+
+    // C3MO_>
+    // Key "." KC_DOT
+    C3MO_GT,
+
+
     // Combo 3 modifiers with command
     C3MC_A,
     C3MC_S,
@@ -147,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MO_A|C3MO_S|C3MO_D|C3MO_F|C3MO_G|-------.    ,-------|  |   | Left |Right | Down |  Up  |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |C3MO_C|      |      |-------|    |-------| Down |      |      |      |      |      |
+ * |      |      |      |C3MO_C|      |      |-------|    |-------| Down |      |C3MO_<|C3MO_>|      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |       | /       /       \     \  |      |      |      |
  *                   | LGUI | LAlt |       |/       /         \     \ |      |      |      |
@@ -158,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD, KC_GRV,  KC_TILD, KC_TRNS, KC_TRNS, KC_TRNS,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   KC_PIPE, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,   KC_PGDN,
-  KC_TRNS, KC_TRNS, KC_TRNS, C3MO_C, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DOWN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, C3MO_C, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DOWN, KC_TRNS,  C3MO_LT, C3MO_GT, KC_TRNS, KC_TRNS,
                              KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 /* ADJUST
@@ -171,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |C4M_Z |C4M_X |C4M_C |C4M_V |C4M_B |-------|    |-------| C4M_N|C4M_M |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
+ *                   | LAlt | LGUI | RAISE| /Space  /       \Enter \  |LOWER |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -408,6 +417,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C3MO_C:
                 send_3_mod_option_combo(KC_C);
                 return false;
+            case C3MO_LT:
+                send_3_mod_option_combo(KC_COMM);
+                return false;
+            case C3MO_GT:
+                send_3_mod_option_combo(KC_DOT);
+                return false;
+            // --------------------------------------------------------------------------------
             case C3MC_A:
                 send_3_mod_cmd_combo(KC_A);
                 return false;
