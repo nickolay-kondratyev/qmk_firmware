@@ -67,6 +67,13 @@ enum custom_keycodes {
     C3MO_G,
     C3MO_C,
 
+    C3MO_Q,
+    C3MO_W,
+    C3MO_E,
+    C3MO_R,
+    C3MO_T,
+    C3MO_M,
+
     // C3MO_<
     // Key "," KC_COMM
     C3MO_LT,
@@ -152,11 +159,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  ~   |  `   |  ~   |      |      |      |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                    | F12  |  '   |  _   |  -   |  Up  | PgUp |
+ * |      |C3MO_Q|C3MO_W|C3MO_E|C3MO_R|C3MO_T|                    | F12  |  '   |  _   |  -   |  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MO_A|C3MO_S|C3MO_D|C3MO_F|C3MO_G|-------.    ,-------|  |   | Left |Right | Down |  Up  |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |C3MO_C|      |      |-------|    |-------| Down |      |C3MO_<|C3MO_>|      |      |
+ * |      |      |      |C3MO_C|      |      |-------|    |-------| Down |C3MO_M|C3MO_<|C3MO_>|      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |       | /       /       \     \  |      |      |      |
  *                   | LGUI | LAlt |       |/       /         \     \ |      |      |      |
@@ -165,9 +172,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_RAISE] = LAYOUT(
   KC_TILD, KC_GRV,  KC_TILD, KC_TRNS, KC_TRNS, KC_TRNS,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
+  KC_TRNS,  C3MO_Q,  C3MO_W,  C3MO_E,  C3MO_R,  C3MO_T,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   KC_PIPE, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,   KC_PGDN,
-  KC_TRNS, KC_TRNS, KC_TRNS, C3MO_C, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DOWN, KC_TRNS,  C3MO_LT, C3MO_GT, KC_TRNS, KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, C3MO_C, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DOWN,  C3MO_M,  C3MO_LT, C3MO_GT, KC_TRNS, KC_TRNS,
                              KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 /* ADJUST
@@ -423,6 +430,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C3MO_GT:
                 send_3_mod_option_combo(KC_DOT);
                 return false;
+            case C3MO_Q:
+                send_3_mod_option_combo(C3MO_Q);
+                return false;
+           case C3MO_W:
+                send_3_mod_option_combo(C3MO_W);
+                return false;
+           case C3MO_E:
+                send_3_mod_option_combo(C3MO_E);
+                return false;
+           case C3MO_R:
+                send_3_mod_option_combo(C3MO_R);
+                return false;
+           case C3MO_T:
+                send_3_mod_option_combo(C3MO_T);
+                return false;
+           case C3MO_M:
+                send_3_mod_option_combo(C3MO_M);
+                return false;
+
             // --------------------------------------------------------------------------------
             case C3MC_A:
                 send_3_mod_cmd_combo(KC_A);
