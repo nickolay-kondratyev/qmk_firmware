@@ -448,7 +448,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
            case C3MO_M:
                 send_3_mod_option_combo(C3MO_M);
                 return false;
-
             // --------------------------------------------------------------------------------
             case C3MC_A:
                 send_3_mod_cmd_combo(KC_A);
