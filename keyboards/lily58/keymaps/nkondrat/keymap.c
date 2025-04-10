@@ -94,6 +94,10 @@ enum custom_keycodes {
 
 
     // Combo 3 modifiers with command
+    C3MC_Q,
+    C3MC_W,
+    C3MC_R,
+
     C3MC_A,
     C3MC_S,
     C3MC_D,
@@ -147,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |  Up  |      |O_ITRM|                    |  |   |  '   |O_INTLJ|      |C3MC_P |  =   |
+ * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|O_ITRM|                    |  |   |  '   |O_INTLJ|      |C3MC_P |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MC_A|O_SLCK|C3MC_D|C3MC_F| O_GPT|-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -159,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_UP,  KC_TRNS,  O_ITRM,                KC_PIPE,  KC_QUOT, O_INTLJ, KC_TRNS, C3MC_P, KC_EQL,
+  KC_TRNS,  C3MC_Q, C3MC_W,    KC_UP,  C3MC_R,  O_ITRM,                KC_PIPE,  KC_QUOT, O_INTLJ, KC_TRNS, C3MC_P, KC_EQL,
   KC_TRNS,  C3MC_A, O_SLCK,   C3MC_D,  C3MC_F,  O_GPT,                C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
   KC_LSFT, KC_TRNS, O_CRSR, O_CHRM,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, O_VSC, C3MC_M, O_MNDN, KC_TRNS, KC_TRNS, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
@@ -478,6 +482,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_3_mod_option_combo(KC_M);
                 return false;
             // --------------------------------------------------------------------------------
+            case C3MC_Q:
+                send_3_mod_cmd_combo(KC_Q);
+                return false;
+            case C3MC_W:
+                send_3_mod_cmd_combo(KC_W);
+                return false;
+            case C3MC_R:
+                send_3_mod_cmd_combo(KC_R);
+                return false;
             case C3MC_A:
                 send_3_mod_cmd_combo(KC_A);
                 return false;
