@@ -69,6 +69,11 @@ enum custom_keycodes {
     // one is actually used for another key; while C3MO_C has meaning to terminals
     // we want to have C3MO_C (Now C3MO_1 be able to be used as add selection
     // to context)
+    C3MO_Z,
+    C3MO_X,
+    C3MO_V,
+    C3MO_B,
+
     C3MO_1,
     C3MO_A,
     C3MO_S,
@@ -177,7 +182,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MO_A|C3MO_S|C3MO_D|C3MO_F|C3MO_G|-------.    ,-------|  |   | Left |Right | Down |  Up  |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |C3MO_1|      |      |-------|    |-------| Down |C3MO_M|C3MO_<|C3MO_>|      |      |
+ * |      |C3MO_Z|C3MO_X|C3MO_1|C3MO_V|C3MO_B|-------|    |-------| Down |C3MO_M|C3MO_<|C3MO_>|      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |       | /       /       \     \  |      |      |      |
  *                   | LGUI | LAlt |       |/       /         \     \ |      |      |      |
@@ -188,7 +193,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD, KC_GRV,  KC_TILD, KC_TRNS, KC_TRNS, KC_TRNS,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
   KC_TRNS,  C3MO_Q,  C3MO_W,  C3MO_E,  C3MO_R,  C3MO_T,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   KC_PIPE, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,   KC_PGDN,
-  KC_TRNS, KC_TRNS, KC_TRNS, C3MO_1, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DOWN,  C3MO_M,  C3MO_LT, C3MO_GT, KC_TRNS, KC_TRNS,
+  KC_TRNS,  C3MO_Z,  C3MO_X,  C3MO_1,  C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN,  C3MO_M,  C3MO_LT, C3MO_GT, KC_TRNS, KC_TRNS,
                              KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 /* ADJUST
@@ -454,6 +459,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C3MO_C:
                 send_3_mod_option_combo(KC_C);
                 return false;
+            case C3MO_Z:
+                send_3_mod_option_combo(KC_Z);
+                return false;
+            case C3MO_X:
+                send_3_mod_option_combo(KC_X);
+                return false;
+            case C3MO_V:
+                send_3_mod_option_combo(KC_V);
+                return false;
+            case C3MO_B:
+                send_3_mod_option_combo(KC_B);
+                return false;   
             case C3MO_1:
                 send_3_mod_option_combo(KC_1);
                 return false;
