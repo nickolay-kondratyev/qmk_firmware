@@ -75,12 +75,19 @@ enum custom_keycodes {
     C3MO_B,
 
     C3MO_1,
+
+    C3MO_3,
+    C3MO_4,
+    C3MO_5,
+
     C3MO_A,
     C3MO_S,
     C3MO_D,
     C3MO_F,
     C3MO_G,
     C3MO_C,
+
+
 
     C3MO_Q,
     C3MO_W,
@@ -129,6 +136,7 @@ const char* custom_strings[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+// ---------------------------------------------------------------------------------------------------------------
 /* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | BSPC |
@@ -152,6 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         KC_LGUI, KC_LALT, MO(_RAISE), KC_SPC, KC_ENT, MO(_LOWER), KC_LALT, KC_LGUI
 ),
 
+// ---------------------------------------------------------------------------------------------------------------
 /* LOWER/Right hand Activated by RIGHT HAND side activation
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
@@ -174,9 +183,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
+// ---------------------------------------------------------------------------------------------------------------
 /* RAISE/LEFT hand Activated by LEFT HAND side activation
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  ~   |  `   |  ~   |      |      |      |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
+ * |  ~   |  `   |  ~   |C3MO_3|C3MO_4|C3MO_5|                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MO_Q|C3MO_W|C3MO_E|C3MO_R|C3MO_T|                    | F12  |  '   |  _   |  -   |  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -188,14 +198,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   | LGUI | LAlt |       |/       /         \     \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-
 [_RAISE] = LAYOUT(
-  KC_TILD, KC_GRV,  KC_TILD, KC_TRNS, KC_TRNS, KC_TRNS,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
+  KC_TILD, KC_GRV,  KC_TILD,  C3MO_3,  C3MO_4,  C3MO_5,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
   KC_TRNS,  C3MO_Q,  C3MO_W,  C3MO_E,  C3MO_R,  C3MO_T,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   KC_PIPE, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,   KC_PGDN,
   KC_TRNS,  C3MO_Z,  C3MO_X,  C3MO_1,  C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN,  C3MO_M,  C3MO_LT, C3MO_GT, KC_TRNS, KC_TRNS,
                              KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
+
+// ---------------------------------------------------------------------------------------------------------------
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  QK_BOOT   | ```   |      |      |      |      |                    |      |      |      |      |      |      |
@@ -219,6 +230,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+// ---------------------------------------------------------------------------------------------------------------
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
@@ -470,10 +482,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case C3MO_B:
                 send_3_mod_option_combo(KC_B);
-                return false;   
+                return false;
             case C3MO_1:
                 send_3_mod_option_combo(KC_1);
                 return false;
+             case C3MO_3:
+                 send_3_mod_option_combo(KC_3);
+                 return false;
+             case C3MO_4:
+                 send_3_mod_option_combo(KC_4);
+                 return false;
+             case C3MO_5:
+                 send_3_mod_option_combo(KC_5);
+                 return false;
             case C3MO_LT:
                 send_3_mod_option_combo(KC_COMM);
                 return false;
