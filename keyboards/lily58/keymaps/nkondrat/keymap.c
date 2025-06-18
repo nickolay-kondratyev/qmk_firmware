@@ -113,6 +113,10 @@ enum custom_keycodes {
     C3MC_W,
     C3MC_R,
 
+    C3MC_T, C3MC_I, C3MC_O, C3MC_N,
+
+    C3MC_Z, C3MC_X,C3MC_C,C3MC_V,C3MC_B,
+
     C3MC_A,
     C3MC_S,
     C3MC_D,
@@ -168,21 +172,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|O_ITRM|                    |  |   |  '   |O_INTLJ|      |C3MC_P |  =   |
+ * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |C3MC_I|C3MC_O|C3MC_P |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_A|O_SLCK|C3MC_D|C3MC_F| O_GPT|-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
+ * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LSHIFT|      |O_CRSR|O_CHRM|      |      |-------|    |-------|O_VSC |C3MC_M|O_MNDN|      |      |LSHIFT|
+ * |LSHIFT|C3MC_Z|C3MC_X|C3MC_C|C3MC_V|C3MC_B|-------|    |-------|C3MC_N|C3MC_M|O_MNDN|      |      |LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LGUI | LAlt |       | /       /       \     \  |      |      |      |
  *                   |      |      |       |/       /         \     \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
-  KC_DEL,  KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS,  C3MC_Q, C3MC_W,    KC_UP,  C3MC_R,  O_ITRM,                KC_PIPE,  KC_QUOT, O_INTLJ, KC_TRNS, C3MC_P, KC_EQL,
-  KC_TRNS,  C3MC_A, O_SLCK,   C3MC_D,  C3MC_F,  O_GPT,                C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
-  KC_LSFT, KC_TRNS, O_CRSR, O_CHRM,  KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, O_VSC, C3MC_M, O_MNDN, KC_TRNS, KC_TRNS, KC_LSFT,
+  KC_DEL,  KC_F1,   KC_F2,  KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
+  KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, C3MC_I, C3MC_O, C3MC_P, KC_EQL,
+  KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
+  KC_LSFT, C3MC_Z,  C3MC_X, C3MC_C,  C3MC_V,  C3MC_B, KC_TRNS,  KC_TRNS, C3MC_N, C3MC_M, O_MNDN, KC_TRNS, KC_TRNS, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
@@ -544,6 +548,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C3MC_D:
                 send_3_mod_cmd_combo(KC_D);
                 return false;
+            case C3MC_T:
+                 send_3_mod_cmd_combo(KC_T);
+                 return false;
+             case C3MC_I:
+                 send_3_mod_cmd_combo(KC_I);
+                 return false;
+             case C3MC_O:
+                 send_3_mod_cmd_combo(KC_O);
+                 return false;
+             case C3MC_N:
+                 send_3_mod_cmd_combo(KC_N);
+                 return false;
+             case C3MC_Z:
+                 send_3_mod_cmd_combo(KC_Z);
+                 return false;
+             case C3MC_X:
+                 send_3_mod_cmd_combo(KC_X);
+                 return false;
+             case C3MC_C:
+                 send_3_mod_cmd_combo(KC_C);
+                 return false;
+             case C3MC_V:
+                 send_3_mod_cmd_combo(KC_V);
+                 return false;
+             case C3MC_B:
+                 send_3_mod_cmd_combo(KC_B);
+                 return false;
             case C3MC_F:
                 send_3_mod_cmd_combo(KC_F);
                 return false;
