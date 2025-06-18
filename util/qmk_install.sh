@@ -10,6 +10,7 @@ else
     MSYS2_CONFIRM=''
 fi
 
+echo "Starting uname based installation"
 case $(uname -a) in
     *Darwin*)
         . "$QMK_FIRMWARE_UTIL_DIR/install/macos.sh";;
@@ -23,10 +24,14 @@ case $(uname -a) in
     *Linux*)
         . "$QMK_FIRMWARE_UTIL_DIR/install/linux_shared.sh"
 
+        echo "--------------------------------------------------------------------------------"
+        echo "Recognized uname as linux: $(grep ID /etc/os-release)"
         case $(grep ID /etc/os-release) in
             *arch*|*manjaro*)
                 . "$QMK_FIRMWARE_UTIL_DIR/install/arch.sh";;
             *debian*|*ubuntu*)
+                echo "Running as UBUNTU"
+
                 . "$QMK_FIRMWARE_UTIL_DIR/install/debian.sh";;
             *fedora*)
                 . "$QMK_FIRMWARE_UTIL_DIR/install/fedora.sh";;

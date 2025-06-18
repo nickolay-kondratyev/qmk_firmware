@@ -24,5 +24,8 @@ _qmk_install() {
             binutils-riscv64-unknown-elf
     fi
 
-    python3 -m pip install --user -r "$QMK_FIRMWARE_DIR"/requirements.txt
+    # ORIGINAL:
+    # python3 -m pip install --user -r "$QMK_FIRMWARE_DIR"/requirements.txt
+
+    pipx inject qmk -r "$QMK_FIRMWARE_DIR"/requirements.txt
 }
