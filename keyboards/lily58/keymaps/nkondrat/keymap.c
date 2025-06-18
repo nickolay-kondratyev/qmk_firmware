@@ -1,5 +1,7 @@
 #include QMK_KEYBOARD_H
 
+// F13 is used instead of T. 
+
 enum layer_number {
   _QWERTY = 0,
   _LOWER,
@@ -549,7 +551,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_3_mod_cmd_combo(KC_D);
                 return false;
             case C3MC_T:
-                 send_3_mod_cmd_combo(KC_T);
+                 send_3_mod_cmd_combo(KC_F13);
                  return false;
              case C3MC_I:
                  send_3_mod_cmd_combo(KC_I);
