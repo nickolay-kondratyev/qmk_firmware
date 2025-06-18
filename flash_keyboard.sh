@@ -11,11 +11,11 @@ main() {
   fi
 
   # Check if the RP2040 bootloader is mounted
-  local bootloader_path="/Volumes/RPI-RP2"
-  if [[ ! -d "$bootloader_path" ]]; then
-    echo "Error: RP2040 bootloader not detected at [$bootloader_path]. Please enter bootloader mode."
+  local bootloader_path
+  bootloader_path="$(./get_bootloader_path.sh)" || {
+    echo "Error: Failed to get bootloader path. Please ensure the RP2040 is in bootloader mode."
     exit 1
-  fi
+  }
 
   # Copy the firmware file to the bootloader volume
   echo.log "Flashing firmware by copying [$firmware_file] to [$bootloader_path/NEW.UF2]..."
