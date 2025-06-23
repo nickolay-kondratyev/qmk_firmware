@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 
-// F13 is used instead of T. 
+// F13 is used instead of T.
 
 enum layer_number {
   _QWERTY = 0,
