@@ -133,6 +133,8 @@ enum custom_keycodes {
 
     // ```
     CODE_BLOCK,
+
+    RUS_P, // Russian П
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -174,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |C3MC_I|C3MC_O|C3MC_P |  =   |
+ * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |C3MC_I|C3MC_O|RUS_P |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -186,7 +188,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,  KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, C3MC_I, C3MC_O, C3MC_P, KC_EQL,
+  KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, C3MC_I, C3MC_O, RUS_P, KC_EQL,
   KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
   KC_LSFT, C3MC_Z,  C3MC_X, C3MC_C,  C3MC_V,  C3MC_B, KC_TRNS,  KC_TRNS, C3MC_N, C3MC_M, O_MNDN, KC_TRNS, KC_TRNS, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
@@ -600,6 +602,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case C3MC_L:
                 send_3_mod_cmd_combo(KC_L);
+                return false;
+            case RUS_P:
+                // Send Russian П (Cyrillic letter)
+                // This is a placeholder; actual implementation may vary based on the keyboard layout
+                send_string("П");
                 return false;
 
         }
