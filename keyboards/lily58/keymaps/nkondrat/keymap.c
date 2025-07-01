@@ -179,9 +179,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |C3MC_I|C3MC_O| C2M_1|  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |KC_END|
+ * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LSHIFT|C3MC_Z|C3MC_X|C3MC_C|C3MC_V|C3MC_B|-------|    |-------|C3MC_N|KC_HOME|KC_END|      |      |LSHIFT|
+ * |LSHIFT|C3MC_Z|C3MC_X|C3MC_C|C3MC_V|C3MC_B|-------|    |-------|C3MC_N|      |      |      |      |LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LGUI | LAlt |       | /       /       \     \  |      |      |      |
  *                   |      |      |       |/       /         \     \ |      |      |      |
@@ -190,8 +190,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,  KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
   KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, C3MC_I, C3MC_O,  C2M_1, KC_EQL,
-  KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_END,
-  KC_LSFT, C3MC_Z,  C3MC_X, C3MC_C,  C3MC_V,  C3MC_B, KC_TRNS,  KC_TRNS, C3MC_N, KC_HOME, KC_END, KC_TRNS, KC_TRNS, KC_LSFT,
+  KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
+  KC_LSFT, C3MC_Z,  C3MC_X, C3MC_C,  C3MC_V,  C3MC_B, KC_TRNS,  KC_TRNS, C3MC_N, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
@@ -204,7 +204,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MO_A|C3MO_S|C3MO_D|C3MO_F|C3MO_G|-------.    ,-------|C3MO_H| Left |Right | Down |  Up  |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |C3MO_Z|C3MO_X|C3MO_1|C3MO_V|C3MO_B|-------|    |-------| Down |C3MO_M|C3MO_<|C3MO_>|      |      |
+ * |      |C3MO_Z|C3MO_X|C3MO_1|C3MO_V|C3MO_B|-------|    |-------| Down | HOME | END  |C3MO_>|      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |       | /       /       \     \  |      |      |      |
  *                   | LGUI | LAlt |       |/       /         \     \ |      |      |      |
@@ -214,7 +214,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD, KC_GRV,  KC_TILD,  C3MO_3,  C3MO_4,  C3MO_5,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
   KC_TRNS,  C3MO_Q,  C3MO_W,  C3MO_E,  C3MO_R,  C3MO_T,                   KC_F12,  KC_QUOT, KC_UNDS, KC_MINS, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP,   KC_PGDN,
-  KC_TRNS,  C3MO_Z,  C3MO_X,  C3MO_1,  C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN,  C3MO_M,  C3MO_LT, C3MO_GT, KC_TRNS, KC_TRNS,
+  KC_TRNS,  C3MO_Z,  C3MO_X,  C3MO_1,  C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
                              KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
