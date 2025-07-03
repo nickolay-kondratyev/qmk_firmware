@@ -1,4 +1,7 @@
 main() {
+  echo.bold "Sleeping for 5 seconds (before the flash so you can put your keyboard into being ready to accept flashing)..."
+  sleep 5
+
   source ./verify_keyboard_ready_for_boot__source_me.sh
 
   # Define the path to the compiled firmware file
