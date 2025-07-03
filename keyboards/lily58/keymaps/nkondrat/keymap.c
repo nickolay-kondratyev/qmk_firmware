@@ -134,11 +134,22 @@ enum custom_keycodes {
     C3MC_M,
     C3MC_P,
 
-    M_SO_1,
-    M_SO_I,
-    M_SO_O,
+    MSO_1,
+    MSO_I,
+    MSO_O,
 
-    M_SO_H,
+    MSO_N, MSO_M,
+
+    // Triangle left "<"
+    MSO_TL,
+
+    // Triangle right ">"
+    MSO_TR,
+
+    // Slash forward "/"
+    MSO_SF,
+
+    MSO_H,
 
 
     // ```
@@ -188,11 +199,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |M_SO_I|M_SO_O|M_SO_1|  =   |
+ * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |MSO_I |MSO_O |MSO_1 |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|M_SO_H|C3MC_J|C3MC_K| "    | '    |      |
+ * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|MSO_H |C3MC_J|C3MC_K| "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LSHIFT|C3MC_Z|C3MC_X|C3MC_C|C3MC_V|C3MC_B|-------|    |-------|C3MC_N|      |      |      |      |LSHIFT|
+ * |LSHIFT|C3MC_Z|C3MC_X|C3MC_C|C3MC_V|C3MC_B|-------|    |-------|MSO_N |MSO_M |MSO_TL|MSO_TR|MSO_SF|LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LGUI | LAlt |       | /       /       \     \  |      |      |      |
  *                   |      |      |       |/       /         \     \ |      |      |      |
@@ -200,9 +211,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,  KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, M_SO_I, M_SO_O,  M_SO_1, KC_EQL,
-  KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                M_SO_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
-  KC_LSFT, C3MC_Z,  C3MC_X, C3MC_C,  C3MC_V,  C3MC_B, KC_TRNS,  KC_TRNS, C3MC_N, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
+  KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, MSO_I, MSO_O,  MSO_1, KC_EQL,
+  KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                MSO_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
+  KC_LSFT, C3MC_Z,  C3MC_X, C3MC_C,  C3MC_V,  C3MC_B, KC_TRNS,  KC_TRNS, MSO_N, MSO_M, MSO_TL, MSO_TR, MSO_SF, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
@@ -324,7 +335,7 @@ void send_4_mod_combo(uint16_t main_key) {
     unregister_code(KC_LSFT);
 }
 
-// M_SO_<KEY>
+// MSO_<KEY>
 void send_2_mod_shift_option(uint16_t main_key) {
     // Register modifier keys
     register_code(KC_LSFT);  // Shift
@@ -641,18 +652,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // --------------------------------------------------------------------------------
             // M_SO: 2 modifier keys (Shift, Ctrl)
 
-            case M_SO_1:
+            case MSO_1:
                 send_2_mod_shift_option(KC_1);
                 return false;
-            case M_SO_I:
+            case MSO_I:
                 send_2_mod_shift_option(KC_I);
                 return false;
-            case M_SO_O:
+            case MSO_O:
                 send_2_mod_shift_option(KC_O);
                 return false;
-            case M_SO_H:
+            case MSO_H:
                 send_2_mod_shift_option(KC_H);
                 return false;
+            case MSO_N:
+                send_2_mod_shift_option(KC_N);
+                return false;
+            case MSO_M:
+                send_2_mod_shift_option(KC_M);
+                return false;
+            case MSO_TL:
+                send_2_mod_shift_option(KC_COMM); // "<" key
+                return false;
+            case MSO_TR:
+                send_2_mod_shift_option(KC_DOT); // ">" key
+                return false;
+            case MSO_SF:
+                send_2_mod_shift_option(KC_SLSH); // "/" key
+                return false;
+
 
         }
     }
