@@ -134,7 +134,8 @@ enum custom_keycodes {
     C3MC_M,
     C3MC_P,
 
-    C2M_1,
+    M_SO_1,
+    M_SO_H,
 
 
     // ```
@@ -177,12 +178,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // ---------------------------------------------------------------------------------------------------------------
 /* LOWER/Right hand Activated by RIGHT HAND side activation
+ *
+ * C3MC - 👎 this modifier has CMD/command in it 👎
+ *
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |C3MC_I|C3MC_O| C2M_1|  =   |
+ * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |C3MC_I|C3MC_O|M_SO_1|  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|C3MC_H|C3MC_J|C3MC_K| "    | '    |      |
+ * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|M_SO_H|C3MC_J|C3MC_K| "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |LSHIFT|C3MC_Z|C3MC_X|C3MC_C|C3MC_V|C3MC_B|-------|    |-------|C3MC_N|      |      |      |      |LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -192,8 +196,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,  KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, C3MC_I, C3MC_O,  C2M_1, KC_EQL,
-  KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                C3MC_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
+  KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, C3MC_I, C3MC_O,  M_SO_1, KC_EQL,
+  KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                M_SO_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
   KC_LSFT, C3MC_Z,  C3MC_X, C3MC_C,  C3MC_V,  C3MC_B, KC_TRNS,  KC_TRNS, C3MC_N, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
@@ -316,8 +320,9 @@ void send_4_mod_combo(uint16_t main_key) {
     unregister_code(KC_LSFT);
 }
 
+// M_SO_<KEY>
 void send_2_mod_shift_option(uint16_t main_key) {
-    // Register the 3 modifier keys (Shift, Ctrl, Option)
+    // Register modifier keys
     register_code(KC_LSFT);  // Shift
     register_code(KC_LALT);  // Option
 
@@ -630,10 +635,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_3_mod_cmd_combo(KC_L);
                 return false;
             // --------------------------------------------------------------------------------
-            case C2M_1:
-                // Register the 2 modifier keys (Shift, Ctrl)
+            // M_SO: 2 modifier keys (Shift, Ctrl)
+            case M_SO_1:
                 send_2_mod_shift_option(KC_1);
                 return false;
+            case M_SO_H:
+                send_2_mod_shift_option(KC_H);
+                return false;
+
         }
     }
     return true;
