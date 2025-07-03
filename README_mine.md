@@ -14,7 +14,6 @@ ii ${QMK_KEYBOARD_MAPPINGS:?}/keyboards/lily58/keymaps/nkondrat/keymap.c
 - [./install_dependencies_for_build.sh](./install_dependencies_for_build.sh): prior to build no keyboard interaction.
 - [compile.sh](./compile.sh) to do the compilation.
 - [flash_keyboard_with_sleep.sh](./flash_keyboard_with_sleep.sh) to flash the firmware.
-- [compile_and_flash.sh](./compile_and_flash.sh): to compile and flash the firmware.
 
 --------------------------------------------------------------------------------
 ### More references
