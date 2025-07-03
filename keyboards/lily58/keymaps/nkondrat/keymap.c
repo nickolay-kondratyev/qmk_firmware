@@ -135,6 +135,9 @@ enum custom_keycodes {
     C3MC_P,
 
     M_SO_1,
+    M_SO_I,
+    M_SO_O,
+
     M_SO_H,
 
 
@@ -180,11 +183,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* LOWER/Right hand Activated by RIGHT HAND side activation
  *
  * C3MC - 👎 this modifier has CMD/command in it 👎
+ *        Aiming to replace with M_SO modified (Shift + Option) keys
  *
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | Delete|  F1  |  F2  |  F3  |  F4  |  F5  |                    | 2>&1 |  +   |  =   |  \   |  {   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |C3MC_I|C3MC_O|M_SO_1|  =   |
+ * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |M_SO_I|M_SO_O|M_SO_1|  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|M_SO_H|C3MC_J|C3MC_K| "    | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -196,7 +200,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,  KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
-  KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, C3MC_I, C3MC_O,  M_SO_1, KC_EQL,
+  KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE,  KC_QUOT, M_SO_I, M_SO_O,  M_SO_1, KC_EQL,
   KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                M_SO_H,   C3MC_J,  C3MC_K, KC_DQT,  KC_DQT, KC_TRNS,
   KC_LSFT, C3MC_Z,  C3MC_X, C3MC_C,  C3MC_V,  C3MC_B, KC_TRNS,  KC_TRNS, C3MC_N, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
@@ -636,8 +640,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             // --------------------------------------------------------------------------------
             // M_SO: 2 modifier keys (Shift, Ctrl)
+
             case M_SO_1:
                 send_2_mod_shift_option(KC_1);
+                return false;
+            case M_SO_I:
+                send_2_mod_shift_option(KC_I);
+                return false;
+            case M_SO_O:
+                send_2_mod_shift_option(KC_O);
                 return false;
             case M_SO_H:
                 send_2_mod_shift_option(KC_H);
