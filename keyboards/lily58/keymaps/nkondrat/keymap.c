@@ -203,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |MSO_I |MSO_O |MSO_1 |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|MSO_H |MSO_J |MSO_K | "    | '    |      |
+ * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|MSO_H |MSO_J |KC_SCRL| "   | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |LSHIFT|C3MC_Z|C3MC_X|C3MC_C|C3MC_V|C3MC_B|-------|    |-------|MSO_N |MSO_M |MSO_TL|MSO_TR|MSO_SF|LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -214,7 +214,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT(
   KC_DEL,  KC_F1,   KC_F2,  KC_F3,    KC_F4,   KC_F5,                CUSTOM_STRING_1, KC_PLUS, KC_EQL,  KC_BSLS, KC_LCBR, KC_TRNS,
   KC_TRNS,  C3MC_Q, C3MC_W,  KC_UP,  C3MC_R,  C3MC_T,                KC_PIPE, KC_QUOT, MSO_I, MSO_O,  MSO_1, KC_EQL,
-  KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                MSO_H,     MSO_J,  MSO_K, KC_DQT,  KC_DQT, KC_TRNS,
+  KC_TRNS,  C3MC_A, C3MC_S, C3MC_D,  C3MC_F,  C3MC_G,                MSO_H,     MSO_J,  KC_SCRL, KC_DQT,  KC_DQT, KC_TRNS,
   KC_LSFT, C3MC_Z,  C3MC_X, C3MC_C,  C3MC_V,  C3MC_B, KC_TRNS,  KC_TRNS, MSO_N, MSO_M, MSO_TL, MSO_TR, MSO_SF, KC_LSFT,
                              KC_LGUI, KC_LALT, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
 ),
