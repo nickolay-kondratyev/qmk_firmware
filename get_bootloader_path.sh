@@ -27,7 +27,11 @@ _linux_get_bootloader_path() {
     return 1
   fi
 
-  local bootloader_path="/media/$(whoami)/RPI-RP2"
+  # Fedora mounts at /run/media/, Ubuntu/PopOS at /media/
+  local bootloader_path="/run/media/$(whoami)/RPI-RP2"
+  if [[ ! -d "$bootloader_path" ]]; then
+    bootloader_path="/media/$(whoami)/RPI-RP2"
+  fi
   if [[ ! -d "$bootloader_path" ]]; then
     echo "Error: RP2040 bootloader not detected at $bootloader_path. Please enter bootloader mode." >&2
     return 1

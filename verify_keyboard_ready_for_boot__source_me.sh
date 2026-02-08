@@ -25,7 +25,11 @@ _linux_verify_keyboard_ready_for_boot() {
   fi
 
   # Ensure the RP2040 is mounted and ready
-  local bootloader_path="/media/$(whoami)/RPI-RP2"
+  # Fedora mounts at /run/media/, Ubuntu/PopOS at /media/
+  local bootloader_path="/run/media/$(whoami)/RPI-RP2"
+  if [[ ! -d "$bootloader_path" ]]; then
+    bootloader_path="/media/$(whoami)/RPI-RP2"
+  fi
   if [[ ! -d "$bootloader_path" ]]; then
     echo.yellow "Error: RP2040 bootloader not detected at $bootloader_path. Please enter bootloader mode."
     exit 1

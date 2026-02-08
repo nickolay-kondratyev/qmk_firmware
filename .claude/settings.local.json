@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dpkg:*)",
+      "Bash(rpm -qa:*)",
+      "Bash(lsusb:*)",
+      "Bash(dmesg:*)",
+      "Bash(lsblk:*)"
+    ]
+  }
+}
