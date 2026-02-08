@@ -8,6 +8,10 @@ main() {
     echo.bold "NOT SURE IF THIS IS ENOUGH FOR INSTALL!!!!"
     eai brew install pipx
     eai pipx install qmk
+
+    if is_fedora; then
+      eai2 sudo dnf install arm-none-eabi-gcc-cs arm-none-eabi-newlib
+    fi
   else
     throw "Unsupported OS uname=[$(uname)]"
   fi
