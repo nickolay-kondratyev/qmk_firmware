@@ -10,6 +10,7 @@ enum layer_number {
   _RH_L1,
   // Left hand layer 1, activated by holding left hand key.
   _LH_L1,
+  _LH_L2,
   _ADJUST,
   _RH_L2
 };
@@ -94,6 +95,12 @@ enum custom_keycodes {
     C3MO_G,
 
     C3MO_H,
+
+    // Attempt to use as special chars initially used for movement in intellij between panes.
+    C3MO_F1,
+    C3MO_F2,
+    C3MO_F3,
+    C3MO_F4,
 
     C3MO_I,
     C3MO_O,
@@ -272,7 +279,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TRNS,  C3MO_Q,  C3MO_W,  C3MO_E,  C3MO_R,  C3MO_T,                   KC_F12,  KC_QUOT, C3MO_I, C3MO_O, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_TRNS,  KC_PGDN,
   KC_TRNS,  C3MO_Z,  C3MO_X,  C3MO_1,  C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
-                             KC_LGUI, KC_LALT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+                         KC_LGUI, KC_LALT, KC_TRNS,  MO(_LH_L2),      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+),
+
+// lskjdfl
+[_LH_L2] = LAYOUT(
+  KC_NO,    KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,                    C3MO_F1, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+  KC_NO,    KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,                    KC_NO,   KC_NO,   KC_NO,   KC_NO, C3MO_F4,   KC_NO,
+  KC_NO,    KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,                    KC_NO, C3MO_F1, C3MO_F2,   KC_NO,   KC_NO,   KC_NO,
+  KC_NO,    KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,      KC_NO, C3MO_F3, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+                      KC_NO,   KC_NO,   KC_TRNS,   KC_TRNS,          KC_NO,    KC_NO,   KC_NO,   KC_NO
 ),
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -561,6 +577,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case C3MO_H:
                 send_3_mod_option_combo(KC_H);
                 return false;
+            // --------------------------------------------------------------------------------
+            case C3MO_F1:
+                send_3_mod_option_combo(KC_F1);
+                return false;
+            case C3MO_F2:
+              send_3_mod_option_combo(KC_F2);
+              return false;
+            case C3MO_F3:
+                send_3_mod_option_combo(KC_F3);
+                return false;
+            case C3MO_F4:
+                send_3_mod_option_combo(KC_F4);
+                return false;
+            // --------------------------------------------------------------------------------
+
             case C3MO_C:
                 send_3_mod_option_combo(KC_C);
                 return false;
