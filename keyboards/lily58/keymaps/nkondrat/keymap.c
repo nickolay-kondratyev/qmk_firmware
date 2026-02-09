@@ -5,7 +5,8 @@
 enum layer_number {
   _QWERTY = 0,
   _LOWER,
-  _RAISE,
+  // Left hand layer 1, activated by holding left hand key.
+  _LH_L1,
   _ADJUST,
 };
 
@@ -179,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |LShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LGUI | LAlt | _RAISE| /Space  /       \Enter \  |LOWER | LAlt | LGUI |
+ *                   | LGUI | LAlt | _LH_L1| /Space  /       \Enter \  |LOWER | LAlt | LGUI |
  *                   |      |      |       |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -189,7 +190,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_LCTL,  KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_LCTL,
   KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_LBRC,  KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_LSFT,
-                        KC_LGUI, KC_LALT, MO(_RAISE), KC_SPC, KC_ENT, MO(_LOWER), KC_LALT, KC_LGUI
+                        KC_LGUI, KC_LALT, MO(_LH_L1), KC_SPC, KC_ENT, MO(_LOWER), KC_LALT, KC_LGUI
 ),
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -237,7 +238,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   | LGUI | LAlt |       |/       /         \     \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-[_RAISE] = LAYOUT(
+[_LH_L1] = LAYOUT(
   KC_TILD, KC_GRV,  KC_TILD,  C3MO_3,  C3MO_4,  C3MO_5,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
   KC_TRNS,  C3MO_Q,  C3MO_W,  C3MO_E,  C3MO_R,  C3MO_T,                   KC_F12,  KC_QUOT, C3MO_I, C3MO_O, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_TRNS,  KC_PGDN,
@@ -272,7 +273,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ---------------------------------------------------------------------------------------------------------------
 // Tri-layer: when both LOWER and RAISE are held simultaneously, activates the ADJUST layer.
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  return update_tri_layer_state(state, _LOWER, _LH_L1, _ADJUST);
 }
 
 //SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
