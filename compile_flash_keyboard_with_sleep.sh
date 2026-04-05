@@ -1,4 +1,6 @@
 main() {
+  eai2 ./compile.sh
+
   echo.bold "Sleeping for 5 seconds (before the flash so you can put your keyboard into being ready to accept flashing)..."
   sleep 5
 
