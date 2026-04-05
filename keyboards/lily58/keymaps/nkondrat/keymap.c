@@ -171,7 +171,9 @@ enum custom_keycodes {
 
     // Kotlin function scaffold: fun (){}
     KT_FUN,
-    KTFUN_C
+    KTFUN_C,
+    KTPRNT,
+    KT_IMP
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -268,7 +270,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  ~   |  `   |  ~   |C3MO_3|C3MO_4|C3MO_5|                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MO_Q|C3MO_W|C3MO_E|C3MO_R|C3MO_T|                    | F12  |  '   |C3MO_I|C3MO_O|  Up  | PgUp |
+ * |      |C3MO_Q|C3MO_W|C3MO_E|C3MO_R|C3MO_T|                    | F12  |  '   |KT_IMP|KTPRNT|  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MO_A|C3MO_S|C3MO_D|KT_FUN|C3MO_G|-------.    ,-------|C3MO_H| Left |Right | Down |      |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -280,7 +282,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LH_L1] = LAYOUT(
   KC_TILD, KC_GRV,  KC_TILD,  C3MO_3,  C3MO_4,  C3MO_5,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
-  KC_TRNS,  C3MO_Q,  C3MO_W,  C3MO_E,  C3MO_R,  C3MO_T,                   KC_F12,  KC_QUOT, C3MO_I, C3MO_O, KC_UP,   KC_PGUP,
+  KC_TRNS,  C3MO_Q,  C3MO_W,  C3MO_E,  C3MO_R,  C3MO_T,                   KC_F12,  KC_QUOT, KT_IMP, KTPRNT, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  KT_FUN,  C3MO_G,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_TRNS,  KC_PGDN,
   KC_TRNS,  C3MO_Z,  C3MO_X,  KTFUN_C, C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
                          KC_LGUI, KC_LALT, KC_TRNS,  MO(_LH_L2),      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
@@ -491,6 +493,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
            case KTFUN_C:
                send_string("/**" SS_TAP(X_ENT) "*" SS_TAP(X_ENT) "* @param" SS_TAP(X_ENT) "* @return" SS_TAP(X_ENT) "* */" SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP));
                return false;
+           case KTPRNT:
+               send_string("println(\"\")" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+               return false;
+
+           case KT_IMP:
+                send_string("import kotlin.io.*" SS_TAP(X_ENT) "import java.util.*" SS_TAP(X_ENT) "import kotlin.math.*");
+                return false;
             //---------------------------------------------------------------------------------
             case C4M_Q:
                 send_4_mod_combo(KC_Q);
