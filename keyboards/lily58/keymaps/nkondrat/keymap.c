@@ -508,7 +508,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                   return false;
 
              case KTTEST:
-                  send_string("fun test(expected:){" SS_TAP(X_ENT) "println(\"---------------------------------------------------------\")" SS_TAP(X_ENT) "val actual = " SS_TAP(X_ENT) "if (actual != expected){" SS_TAP(X_ENT) SS_TAP(X_TAB) "throw AssertionError(\"INPUT: [TODO], expected: [$expected], actual: [$actual]\")" SS_TAP(X_ENT) SS_LSFT(SS_TAP(X_TAB)) "}");
+                  send_string("fun test(expected:){" SS_TAP(X_ENT) "println(\"---------------------------------------------------------\")" SS_TAP(X_ENT) "val actual = " SS_TAP(X_ENT) "if (actual != expected){" SS_TAP(X_ENT) SS_TAP(X_TAB) "val msg = \"INPUT: [TODO], expected: [$expected], actual: [$actual]\"" SS_TAP(X_ENT) "println(msg)" SS_TAP(X_ENT) "throw AssertionError(msg)" SS_TAP(X_ENT) SS_LSFT(SS_TAP(X_TAB)) "}");
                   return false;
             case KT_EXC:
                 send_string("throw RuntimeException(\"Not Implemented\")");
