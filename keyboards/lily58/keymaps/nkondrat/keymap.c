@@ -494,7 +494,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  return false;
 
              case KTFUN_C:
-                send_string("/**" SS_TAP(X_ENT) "*" SS_TAP(X_ENT) "* @param" SS_TAP(X_ENT) "* @return" SS_TAP(X_ENT) "* */" SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " ");
+                send_string("/**" SS_TAP(X_ENT) "*" SS_TAP(X_ENT) "* */" SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) " ");
                 return false;
              case KTPRNT:
                  send_string("println(\"\")" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
