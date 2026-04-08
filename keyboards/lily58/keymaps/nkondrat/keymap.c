@@ -303,7 +303,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ---------------------------------------------------------------------------------------------------------------
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  QK_BOOT   | ```   |      |      |      |      |                    |      |      |      |      |      |      |
+ * |     | ```   |      |      |      |      |                    |      |      |      |      |      |QK_BOOT|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C4M_Q |C4M_W |C4M_E |C4M_R |C4M_T |                    |C4M_Y |C4M_U |C4M_I |C4M_O |C4M_P |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -316,7 +316,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
   [_ADJUST] = LAYOUT(
-  QK_BOOT, CODE_BLOCK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, CODE_BLOCK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
   XXXXXXX, C4M_Q, C4M_W, C4M_E, C4M_R, C4M_T,                             C4M_Y, C4M_U, C4M_I, C4M_O, C4M_P, XXXXXXX,
   XXXXXXX, C4M_A, C4M_S, C4M_D, C4M_F, C4M_G,                             C4M_H, C4M_J, C4M_K, C4M_L, XXXXXXX, XXXXXXX,
   XXXXXXX, C4M_Z, C4M_X, C4M_C, C4M_V, C4M_B, XXXXXXX,           XXXXXXX,C4M_N, C4M_M, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
