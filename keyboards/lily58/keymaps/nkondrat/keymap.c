@@ -180,11 +180,18 @@ enum custom_keycodes {
     // Coder pad find references
     CP_FREF,
 
+    // Action code
+    CP_F1,
+    // Go to next reference
+    CP_F4,
     // Coder pad go to definition
     CP_DEF,
 
     // Coder pad go to symbol
-    CP_GTS
+    CP_GTS,
+
+    // Coder pad to go line
+    CP_GTL
 };
 
 // Define an array of custom strings corresponding to custom keycodes
@@ -281,9 +288,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  ~   |  `   |  ~   |C3MO_3|C3MO_4|C3MO_5|                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MO_Q|C3MO_W|KTMAIN|C3MO_R|KTTEST|                    | F12  |  '   |KT_IMP|KTPRNT|  Up  | PgUp |
+ * |      |C3MO_Q|KTTEST|KTMAIN|CP_F4 |CP_GTS|                    | F12  |  '   |KT_IMP|KTPRNT|  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MO_A|C3MO_S|CP_DEF|CP_FREF|CP_GTS|-------.    ,-------|C3MO_H| Left |Right | Down |      |PgDwn |
+ * |      |CP_F1 |C3MO_S|CP_DEF|CP_FREF|CP_GTL|-------.    ,-------|C3MO_H| Left |Right | Down |      |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |C3MO_Z|KT_EXC|KTFUN_C|C3MO_V|C3MO_B|-------|    |-------| Down | HOME | END  |C3MO_>|      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -293,8 +300,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LH_L1] = LAYOUT(
   KC_TILD, KC_GRV,  KC_TILD,  C3MO_3,  C3MO_4,  C3MO_5,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
-  KC_TRNS,  C3MO_Q,  C3MO_W,  KTMAIN,  C3MO_R,  KTTEST,                   KC_F12,  KC_QUOT, KT_IMP, KTPRNT, KC_UP,   KC_PGUP,
-  KC_TRNS,  C3MO_A,  C3MO_S,  CP_DEF,  CP_FREF,  CP_GTS,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_TRNS,  KC_PGDN,
+  KC_TRNS,  C3MO_Q,  KTTEST,  KTMAIN,  CP_F4,  CP_GTS,                   KC_F12,  KC_QUOT, KT_IMP, KTPRNT, KC_UP,   KC_PGUP,
+  KC_TRNS,  CP_F1,  C3MO_S,  CP_DEF,  CP_FREF,  CP_GTL,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_TRNS,  KC_PGDN,
   KC_TRNS,  C3MO_Z,  KT_EXC,  KTFUN_C, C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
                          KC_LGUI, KC_LALT, KC_TRNS,  MO(_LH_L2),      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
@@ -495,9 +502,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_F12);
                 unregister_code(KC_LSFT);
                 return false;
+             case CP_F4:
+                tap_code(KC_F4);
+                return false;
+             case CP_F1:
+                tap_code(KC_F1);
+                return false;
              case CP_DEF:
                 register_code(KC_LCTL);
                 tap_code(KC_F12);
+                unregister_code(KC_LCTL);
+                return false;
+            case CP_GTL:
+                register_code(KC_LCTL);
+                tap_code(KC_G);
                 unregister_code(KC_LCTL);
                 return false;
              case CP_GTS:
