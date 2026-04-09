@@ -533,7 +533,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  return false;
 
              case KT_IMP:
-                  send_string("import kotlin.io.*" SS_TAP(X_ENT) "import java.util.*" SS_TAP(X_ENT) "import kotlin.math.*");
+                  send_string("import kotlin.io.*" SS_TAP(X_ENT) "import java.util.*" SS_TAP(X_ENT) "import kotlin.math.*" SS_TAP(X_ENT) "import kotlinx.serialization.json.*");
                   return false;
              case KTMAIN:
                   send_string("fun main(args: Array<String>) {" SS_TAP(X_ENT) "println(\"DONE\")");
