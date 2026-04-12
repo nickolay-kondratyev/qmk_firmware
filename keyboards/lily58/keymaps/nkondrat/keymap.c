@@ -546,7 +546,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
              case KTTEST:
                   return false;
             case KT_EXC:
-                send_string("throw RuntimeException(\"\")" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+                send_string("throw RuntimeException(\"\")" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
                 return false;
             //---------------------------------------------------------------------------------
             case C4M_Q:
