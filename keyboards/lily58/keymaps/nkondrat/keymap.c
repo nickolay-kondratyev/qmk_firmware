@@ -169,7 +169,7 @@ enum custom_keycodes {
     // ```
     CODE_BLOCK,
 
-    KTFUN_C,
+    KTCLASS,
     KT_EXC,
     KTPRNT,
     KT_IMP,
@@ -292,7 +292,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |CP_F1 |C3MO_S|CP_DEF|CP_FREF|CP_GTL|-------.    ,-------|C3MO_H| Left |Right | Down |      |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |C3MO_Z|KT_EXC|KTFUN_C|C3MO_V|C3MO_B|-------|    |-------| Down | HOME | END  |C3MO_>|      |      |
+ * |      |C3MO_Z|KT_EXC|KTCLASS|C3MO_V|C3MO_B|-------|    |-------| Down | HOME | END  |C3MO_>|      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |       | /       /       \     \  |      |      |      |
  *                   | LGUI | LAlt |       |/       /         \     \ |      |      |      |
@@ -302,7 +302,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD, KC_GRV,  KC_TILD,  C3MO_3,  C3MO_4,  C3MO_5,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
   KC_TRNS,  C3MO_Q,  KTTEST,  KTFUNC,  CP_F4,  CP_GTS,                   KC_F12,  KC_QUOT, KT_IMP, KTPRNT, KC_UP,   KC_PGUP,
   KC_TRNS,  CP_F1,  C3MO_S,  CP_DEF,  CP_FREF,  CP_GTL,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_TRNS,  KC_PGDN,
-  KC_TRNS,  C3MO_Z,  KT_EXC,  KTFUN_C, C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
+  KC_TRNS,  C3MO_Z,  KT_EXC,  KTCLASS, C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
                          KC_LGUI, KC_LALT, KC_TRNS,  MO(_LH_L2),      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
@@ -525,8 +525,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  unregister_code(KC_LSFT);
                  unregister_code(KC_LCTL);
                  return false;
-             case KTFUN_C:
-                send_string("/**" SS_TAP(X_ENT) "*" SS_TAP(X_ENT) "* */" SS_TAP(X_UP) " ");
+             case KTCLASS:
+                send_string("class X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
                 return false;
              case KTPRNT:
                  send_string("println()" SS_TAP(X_LEFT));
