@@ -244,7 +244,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MC_Q|C3MC_W|  Up  |C3MC_R|C3MC_T|                    |  |   |  '   |MSO_I |MSO_O |MSO_1 |  =   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|MSO_H |MSO_J |KC_SCRL| "   | '    |      |
+ * |KC_LCTL|C3MC_A|C3MC_S|C3MC_D|C3MC_F|C3MC_G|-------.    ,-------|MSO_H |MSO_J |KC_SCRL| "   | '    |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |LSHIFT|C3MC_Z|C3MC_X|C3MC_C|C3MC_V|C3MC_B|-------|    |-------|MSO_N |MSO_M |MSO_TL|MSO_TR|MSO_SF|LSHIFT|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -533,7 +533,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  return false;
              case KTINTER:
                   send_string("interface X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
-                             return false;
+                  return false;
              case KTCLASS:
                 send_string("class X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
                 return false;
@@ -545,12 +545,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                   send_string("import kotlin.io.*" SS_TAP(X_ENT) "import java.util.*" SS_TAP(X_ENT) "import kotlin.math.*" SS_TAP(X_ENT) "import kotlin.time.*" SS_TAP(X_ENT) "import kotlinx.serialization.json.*");
                   return false;
              case KTFUNC:
-                  send_string("fun f() {" SS_TAP(X_ENT) "throw RuntimeException(\"Not Implemented\")" SS_TAP(X_UP) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
+                  send_string("void f() {" SS_TAP(X_ENT) "throw new RuntimeException(\"Not Implemented\");" SS_TAP(X_UP) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
                   return false;
              case KTTEST:
                   return false;
             case KT_EXC:
-                send_string("throw RuntimeException(\"\")" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+                send_string("throw new RuntimeException(\"\")" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
                 return false;
             //---------------------------------------------------------------------------------
             case C4M_Q:
