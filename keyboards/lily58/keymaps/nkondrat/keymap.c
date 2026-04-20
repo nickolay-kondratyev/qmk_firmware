@@ -549,7 +549,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                   send_string("import kotlin.io.*" SS_TAP(X_ENT) "import java.util.*" SS_TAP(X_ENT) "import kotlin.math.*" SS_TAP(X_ENT) "import kotlin.time.*" SS_TAP(X_ENT) "import kotlinx.serialization.json.*");
                   return false;
              case KTFUNC:
-                  send_string("void f() {" SS_TAP(X_ENT) "throw new RuntimeException(\"Not Implemented\");" SS_TAP(X_UP) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
+                  send_string("void f() {" SS_TAP(X_ENT) "throw new RuntimeException(\"Not Implemented\");" SS_TAP(X_UP) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC));
                   return false;
              case KTTEST:
                   return false;
