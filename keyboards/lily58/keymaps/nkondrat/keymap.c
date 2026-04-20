@@ -532,10 +532,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  unregister_code(KC_LCTL);
                  return false;
              case KTINTER:
-                  send_string("interface X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
+                  send_string("static interface X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
                   return false;
              case KTCLASS:
-                send_string("class X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
+                send_string("static class X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
                 return false;
              case KTPRNT:
                  send_string("println()" SS_TAP(X_LEFT));
