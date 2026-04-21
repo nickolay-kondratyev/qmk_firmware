@@ -542,7 +542,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string("static class X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT)  SS_TAP(X_BSPC));
                 return false;
              case KTPRNT:
-                 send_string("println()" SS_TAP(X_LEFT));
+                 send_string("System.out.println();" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
                  return false;
 
              case KT_IMP:
