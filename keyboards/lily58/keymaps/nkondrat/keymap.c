@@ -533,28 +533,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  unregister_code(KC_LCTL);
                  return false;
              case KTINTER:
-                  send_string("interface X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
+//                  send_string("interface X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
                   return false;
              case JRECORD:
-                send_string("record X(){}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
+//                send_string("record X(){}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
                 return false;
              case KTCLASS:
-                send_string("static class X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT)  SS_TAP(X_BSPC));
+//                send_string("static class X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT)  SS_TAP(X_BSPC));
                 return false;
              case KTPRNT:
-                 send_string("System.out.println();" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+//                 send_string("System.out.println();" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
                  return false;
 
              case KT_IMP:
                   send_string("this.");
                   return false;
              case KTFUNC:
-                  send_string("void f() {" SS_TAP(X_ENT) "throw new RuntimeException(\"Not Implemented\");" SS_TAP(X_UP) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC));
+//                  send_string("void f() {" SS_TAP(X_ENT) "throw new RuntimeException(\"Not Implemented\");" SS_TAP(X_UP) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC));
                   return false;
              case KTTEST:
                   return false;
             case KT_EXC:
-                send_string("throw new RuntimeException(\"\");" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+//                send_string("throw new RuntimeException(\"\");" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
                 return false;
             //---------------------------------------------------------------------------------
             case C4M_Q:
