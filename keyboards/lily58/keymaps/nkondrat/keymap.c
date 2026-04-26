@@ -169,7 +169,7 @@ enum custom_keycodes {
     // ```
     CODE_BLOCK,
 
-    KTCLASS,
+    EXPSEL,
     JRECORD,
     KTINTER,
     KT_EXC,
@@ -292,11 +292,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  ~   |  `   |  ~   |C3MO_3|C3MO_4|C3MO_5|                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |KTINTER|KTCLASS|KTFUNC|JRECORD |CP_GTS|                    | F12  |  '   |KT_IMP|KTPRNT|  Up  | PgUp |
+ * |      |KTINTER|EXPSEL|KTFUNC|JRECORD |CP_GTS|                    | F12  |  '   |KT_IMP|KTPRNT|  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |CP_F1 |C3MO_S|CP_DEF|CP_FREF|CP_GTL|-------.    ,-------|C3MO_H| Left |Right | Down |      |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |C3MO_Z|KT_EXC|KTCLASS|C3MO_V|CPPROB|-------|    |-------| Down | HOME | END  |C3MO_>|      |      |
+ * |      |C3MO_Z|KT_EXC|EXPSEL|C3MO_V|CPPROB|-------|    |-------| Down | HOME | END  |C3MO_>|      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |       | /       /       \     \  |      |      |      |
  *                   | LGUI | LAlt |       |/       /         \     \ |      |      |      |
@@ -304,9 +304,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LH_L1] = LAYOUT(
   KC_TILD, KC_GRV,  KC_TILD,  C3MO_3,  C3MO_4,  C3MO_5,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
-  KC_TRNS,  KTINTER,  KTCLASS,  KTFUNC,  JRECORD,  CP_GTS,                   KC_F12,  KC_QUOT, KT_IMP, KTPRNT, KC_UP,   KC_PGUP,
+  KC_TRNS,  KTINTER,  EXPSEL,  KTFUNC,  JRECORD,  CP_GTS,                   KC_F12,  KC_QUOT, KT_IMP, KTPRNT, KC_UP,   KC_PGUP,
   KC_TRNS,  CP_F1,  C3MO_S,  CP_DEF,  CP_FREF,  CP_GTL,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_TRNS,  KC_PGDN,
-  KC_TRNS,  C3MO_Z,  KT_EXC,  KTCLASS, C3MO_V,  CPPROB, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
+  KC_TRNS,  C3MO_Z,  KT_EXC,  EXPSEL, C3MO_V,  CPPROB, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
                          KC_LGUI, KC_LALT, KC_TRNS,  MO(_LH_L2),      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
@@ -538,7 +538,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
              case JRECORD:
 //                send_string("record X(){}" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_BSPC));
                 return false;
-             case KTCLASS:
+             case EXPSEL:
+                 tap_code16(S(A(KC_RIGHT)));
 //                send_string("static class X{}" SS_TAP(X_LEFT) SS_TAP(X_LEFT)  SS_TAP(X_BSPC));
                 return false;
              case KTPRNT:
