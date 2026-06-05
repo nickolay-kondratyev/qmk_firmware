@@ -292,7 +292,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  ~   |  `   |  ~   |C3MO_3|C3MO_4|C3MO_5|                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |KTINTER|EXPSEL|KTFUNC|JRECORD |CP_GTS|                    | F12  |  '   |KT_IMP|KTPRNT|  Up  | PgUp |
+ * |      |KTINTER|EXPSEL|KTFUNC|JRECORD |CP_GTS|                 | F12  |  '   |C3MO_I|C3MO_O|  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |CP_F1 |C3MO_S|C3MO_D|C3MO_F|C3MO_G|-------.    ,-------|C3MO_H| Left |Right | Down |      |PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -304,7 +304,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LH_L1] = LAYOUT(
   KC_TILD, KC_GRV,  KC_TILD,  C3MO_3,  C3MO_4,  C3MO_5,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
-  KC_TRNS,  KTINTER,  EXPSEL,  KTFUNC,  JRECORD,  CP_GTS,                   KC_F12,  KC_QUOT, KT_IMP, KTPRNT, KC_UP,   KC_PGUP,
+  KC_TRNS,  KTINTER,  EXPSEL,  KTFUNC,  JRECORD,  CP_GTS,                   KC_F12,  KC_QUOT, C3MO_I, C3MO_O, KC_UP,   KC_PGUP,
   KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_TRNS,  KC_PGDN,
   KC_TRNS,  C3MO_Z,  C3MO_X,  C3MO_C, C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
                          KC_LGUI, KC_LALT, KC_TRNS,  MO(_LH_L2),      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
