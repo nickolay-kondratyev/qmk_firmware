@@ -102,6 +102,9 @@ enum custom_keycodes {
     C3MO_F3,
     C3MO_F4,
 
+    // SCLN: semicolon;
+    C3MO_SCLN,
+
     C3MO_I,
     C3MO_O,
 
@@ -294,7 +297,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |C3MO_Q|C3MO_W|C3MO_E|C3MO_R|CP_GTS|                 | F12  |  '   |C3MO_I|C3MO_O|  Up  | PgUp |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |CP_F1 |C3MO_S|C3MO_D|C3MO_F|C3MO_G|-------.    ,-------|C3MO_H| Left |Right | Down |      |PgDwn |
+ * |      |CP_F1 |C3MO_S|C3MO_D|C3MO_F|C3MO_G|-------.    ,-------|C3MO_H| Left |Right | Down |C3MO_;|PgDwn |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |C3MO_Z|C3MO_X|C3MO_C|C3MO_V|C3MO_B|-------|    |-------| Down | HOME | END  |C3MO_>|      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -305,7 +308,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LH_L1] = LAYOUT(
   KC_TILD, KC_GRV,  KC_TILD,  C3MO_3,  C3MO_4,  C3MO_5,                     KC_F6,   KC_F7,    KC_F8,   KC_F9, KC_F10,  KC_F11,
   KC_TRNS,  C3MO_Q,  C3MO_W,  C3MO_E,  C3MO_R,  CP_GTS,                   KC_F12,  KC_QUOT, C3MO_I, C3MO_O, KC_UP,   KC_PGUP,
-  KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, KC_TRNS,  KC_PGDN,
+  KC_TRNS,  C3MO_A,  C3MO_S,  C3MO_D,  C3MO_F,  C3MO_G,                   C3MO_H, KC_LEFT, KC_RGHT, KC_DOWN, C3MO_SCLN,  KC_PGDN,
   KC_TRNS,  C3MO_Z,  C3MO_X,  C3MO_C, C3MO_V,  C3MO_B, KC_TRNS, KC_TRNS, KC_DOWN, KC_HOME, KC_END, C3MO_GT, KC_TRNS, KC_TRNS,
                          KC_LGUI, KC_LALT, KC_TRNS,  MO(_LH_L2),      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
@@ -673,6 +676,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case C3MO_F4:
                 send_3_mod_option_combo(KC_F4);
+                return false;
+
+            case C3MO_SCLN:
+                send_3_mod_option_combo(KC_SCLN);
                 return false;
             // --------------------------------------------------------------------------------
 
